@@ -1,11 +1,11 @@
 xlsform-template
-================
+=================
 
 [![Build Status](https://travis-ci.org/lykmapipo/xlsform-template.svg?branch=master)](https://travis-ci.org/lykmapipo/xlsform-template)
 
 Utilities create [XLSForm](http://xlsform.org/) template for [nodejs](https://github.com/nodejs)
 
-It will generate `excel` workbook contains `survey`, `choices` and `settings` worksheets with the most commonly used `xlsform fields`
+It generate `excel` workbook contains `survey`, `choices` and `settings` worksheets contains most commonly used `xlsform fields`
 
 ## Installation
 ```sh
