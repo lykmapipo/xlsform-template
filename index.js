@@ -55,6 +55,7 @@ var meta = [{
  * @description build xlsform template with common setup 
  * @param {Object} options template options
  * @return {Object} template instance
+ * @public
  */
 function Template(options) {
     //normalize options
