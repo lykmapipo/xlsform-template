@@ -18,13 +18,14 @@ var choicesHeaders = ['listName', 'name', 'label'];
 //settings worksheet default headers
 var settingsHeaders = [
     'formTitle', 'formId',
-    'defaultLanguage', 'instanceName'
+    'defaultLanguage', 'Version', 'instanceName'
 ];
 
 //default form setting
 var settings = {
     formTitle: 'XLSForm',
     formId: 'Form ID',
+    version: '1.0.0',
     defaultLanguage: 'English'
 };
 
