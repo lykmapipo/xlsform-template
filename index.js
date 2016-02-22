@@ -22,7 +22,7 @@ var settingsHeaders = [
 ];
 
 //default form setting
-var setting = {
+var settings = {
     formTitle: 'XLSForm',
     formId: 'Form ID',
     defaultLanguage: 'English'
@@ -75,7 +75,7 @@ function Template(options) {
     meta = _.compact(_.union(meta, options.meta));
 
     //extend form settings
-    setting = _.merge(setting, options.setting);
+    settings = _.merge(settings, options.settings);
 
     //prepare template workbook
     this.workbook = xlsx.workbook();
@@ -105,15 +105,15 @@ function Template(options) {
     this.settings.setHeader(_.map(this.settingsHeaders, _.snakeCase));
 
     //build settings rows
-    setting = _.map(setting, function(value, key) {
+    settings = _.map(settings, function(value, key) {
         var conf = {};
         conf[_.snakeCase(key)] = value;
         return conf;
     });
-    setting = _.reduce(setting, function(result, n) {
+    settings = _.reduce(settings, function(result, n) {
         return _.merge(result, n);
     }, {});
-    this.settings.addRow(setting);
+    this.settings.addRow(settings);
 
 }
 

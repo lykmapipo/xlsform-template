@@ -15,7 +15,7 @@ $ npm install --save xlsform-template
 ## Usage
 ```js
 var template = new require('xlsform-template')({
-    setting:{
+    settings:{
         formTitle:'Registration',
         formId:'registration_form'
     }
@@ -29,7 +29,7 @@ template.writeFile(_<filename>_, function(error,result) {
 //download it on http request
 app.get('/xlsform', function(request, response) {
             var template = new Template({
-                setting:{
+                settings:{
                     formTitle:'Registration',
                     formId:'registration_form'
                 }
@@ -41,6 +41,23 @@ app.get('/xlsform', function(request, response) {
 
         });
 
+```
+
+## Options
+
+## Settings
+Must be a valid and allowed `setting` column in `XLSForm`. They must be in camelcase e.g for `form_id` should be provided as `formId`
+
+Example
+```js
+var template = new Template({
+                settings:{
+                    formTitle:'Registration',
+                    formId:'registration_form',
+                    instanceName:'<value>' or `<expression>`,
+                    defaultLanguage: 'English'
+                }
+            });
 ```
 
 ## Literature Reviewed
