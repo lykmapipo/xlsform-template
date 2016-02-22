@@ -63,6 +63,24 @@ var template = new Template({
             });
 ```
 
+## Experimental
+Passing array of `question` options, `xlsform-template` will try to add them to the survey workbook. _All question attribute must be valid XLSForm attributes_
+
+Example
+```js
+var template = new Template({
+            questions: [{
+                type: 'text',
+                name: 'name',
+                label: 'What is your name?'
+            }, {
+                type: 'integer',
+                name: 'age',
+                label: 'How old are you?'
+            }]
+        });
+```
+
 ## Literature Reviewed
 - [XLSForm](http://xlsform.org/)
 

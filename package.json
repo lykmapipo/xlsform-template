@@ -1,6 +1,6 @@
 {
     "name": "xlsform-template",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "description": "Utilities to create xlsform template",
     "main": "index.js",
     "scripts": {

@@ -12,6 +12,21 @@ var surveyHeaders = [
     'relevant', 'readOnly', 'appearance'
 ];
 
+//default survey question row
+var defaultRow = {
+    type: '',
+    name: '',
+    label: '',
+    hint: '',
+    constraint: '',
+    constraintMessage: '',
+    required: '',
+    default: '',
+    relevant: '',
+    readOnly: '',
+    appearance: ''
+};
+
 //choices worksheet default headers
 var choicesHeaders = ['listName', 'name', 'label'];
 
@@ -94,10 +109,32 @@ function Template(options) {
     //build survey worksheet header
     this.survey.setHeader(_.map(this.surveyHeaders, _.snakeCase));
 
-    //build default preloader/meta questions rowa
+    //build default preloader/meta questions rows
     _.forEach(meta, function(_meta) {
         this.survey.addRow(_meta);
     }.bind(this));
+
+
+    //add questions into survey workbook if they exists
+    if (options.questions && _.isArray(options.questions)) {
+        //build questions rows
+        options.questions = _.map(options.questions, function(value) {
+            //pick allowed columns in order
+            value = _.pick(value, surveyHeaders);
+            //ensure order by merge
+            value = _.merge({}, defaultRow, value);
+
+            return value;
+
+        });
+
+        //add questions rows
+        _.forEach(options.questions, function(_question) {
+            this.survey.addRow(_question);
+        }.bind(this));
+        
+    }
+
 
     //build choices worksheet header
     this.choices.setHeader(_.map(this.choicesHeaders, _.snakeCase));

@@ -12,6 +12,7 @@ chai.use(require('chai-fs'));
 var expect = require('chai').expect;
 var generatedPath = path.join(__dirname, 'fixture', 'generated');
 var sample = path.join(__dirname, 'fixture', 'sample.xls');
+var filled = path.join(__dirname, 'fixture', 'filled.xls');
 
 //xlsform template builder
 var Template = require(path.join(__dirname, '..'));
@@ -44,6 +45,34 @@ describe('xlsform template', function() {
 
             expect(fs.readFileSync(filename).toString('base64').substr(0, 12))
                 .to.be.equal(fs.readFileSync(sample).toString('base64').substr(0, 12));
+
+            done();
+        });
+    });
+
+    it('should be able to build and write xlsform template with additional questions', function(done) {
+        var filename =
+            path.join(generatedPath, Date.now() + '.xls');
+
+        var template = new Template({
+            questions: [{
+                type: 'text',
+                name: 'name',
+                label: 'What is your name?'
+            }, {
+                type: 'integer',
+                name: 'age',
+                label: 'How old are you?'
+            }]
+        });
+
+        template.writeFile(filename, function(error) {
+
+            expect(error).to.not.exist;
+            expect(filename).to.be.a.file().and.not.empty;
+
+            expect(fs.readFileSync(filename).toString('base64').substr(0, 12))
+                .to.be.equal(fs.readFileSync(filled).toString('base64').substr(0, 12));
 
             done();
         });
